@@ -1,0 +1,77 @@
+﻿<Window x:Class="Maze.Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Maze.Gui"
+        mc:Ignorable="d"
+        Title="Maze Generator" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Поле для отрисовки лабиринта 500x500 -->
+        <Border Grid.Column="0" 
+                Width="500" Height="500" 
+                BorderBrush="Black" BorderThickness="0"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image x:Name="MazeImage" 
+                   Width="500" Height="500"
+                   Stretch="Fill"/>
+        </Border>
+      
+
+        <!-- Панель управления -->
+        <StackPanel Grid.Column="1" Margin="10" VerticalAlignment="Center">
+            <TextBlock Text="MAZE ROWS" FontWeight="Bold" Margin="0,0,0,5"/>
+            <Slider x:Name="rows_slider" 
+                    Minimum="2" Maximum="50" 
+                    Value="25" TickFrequency="1" 
+                    IsSnapToTickEnabled="True" 
+                    AutoToolTipPlacement="TopLeft" 
+                    AutoToolTipPrecision="0"
+                    Margin="0,0,0,15"/>
+            <TextBlock Text="{Binding ElementName=rows_slider, Path=Value, StringFormat='Rows: {0}'}" 
+                       Margin="0,0,0,15"/>
+
+            <TextBlock Text="MAZE COLS" FontWeight="Bold" Margin="0,0,0,5"/>
+            <Slider x:Name="cols_slider" 
+                    Minimum="2" Maximum="50" 
+                    Value="25" TickFrequency="1" 
+                    IsSnapToTickEnabled="True" 
+                    AutoToolTipPlacement="TopLeft" 
+                    AutoToolTipPrecision="0"
+                    Margin="0,0,0,15"/>
+            <TextBlock Text="{Binding ElementName=cols_slider, Path=Value, StringFormat='Cols: {0}'}" 
+                       Margin="0,0,0,20"/>
+
+            <Button x:Name="generate" Content="GENERATE" 
+                    Height="40" Margin="0,0,0,10"
+                    Click="GenerateButton_Click"/>
+
+            <Button x:Name="save" Content="SAVE" 
+                    Height="40" Margin="0,0,0,10"
+                    Click="SaveButton_Click"/>
+
+            <Button x:Name="load" Content="LOAD" 
+                    Height="40" Margin="0,0,0,10"
+                    Click="LoadButton_Click"/>
+
+            <Button x:Name="selectStart" Content="SELECT START" 
+                    Height="40" Margin="0,0,0,10"
+                    Click="SelectStartButton_Click"/>
+
+            <Button x:Name="selectEnd" Content="SELECT END" 
+                    Height="40" Margin="0,0,0,10"
+                    Click="SelectEndButton_Click"/>
+
+            <Button x:Name="solve" Content="SOLVE" 
+                    Height="40" Margin="0,0,0,10"
+                    Click="SolveButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
